@@ -60,83 +60,43 @@
         .container.active {
             display: block;
         }
-        .toggle-options {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .toggle-options button {
-            padding: 15px 30px;
-            margin: 10px;
-            border: none;
-            border-radius: 50px;
-            background: #4e54c8;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-        }
-        .toggle-options button:hover {
-            background: #8f94fb;
-            transform: translateY(-3px);
-        }
-        .toggle-container {
-            position: relative;
-            width: 80%;
-            margin: 20px auto;
-            height: 500px;
-            perspective: 1000px;
-            overflow: hidden;
-        }
-        .toggle-content {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 1s ease-in-out;
-            transform-style: preserve-3d;
-        }
-        .toggle-content.show-sculptures {
-            transform: rotateY(0deg);
-        }
-        .toggle-content.show-paintings {
-            transform: rotateY(180deg);
-        }
         .art-section {
-            padding: 20px;
-            backface-visibility: hidden;
-            position: absolute;
-            width: 100%;
-            height: 100%;
+            padding: 40px;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: flex-start;
+            flex-direction: column;
+            gap: 20px;
         }
-        .art-section.sculptures {
-            transform: rotateY(0deg);
-        }
-        .art-section.paintings {
-            transform: rotateY(180deg);
+        .project-title {
+            /*text-align: center;*/
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #4e54c8;
         }
         .art-piece {
             background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin: 20px;
-            flex: 1 1 calc(45% - 40px);
-            max-width: calc(45% - 40px);
             transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
         }
         .art-piece:hover {
             transform: translateY(-10px);
         }
         .art-piece img {
-            max-width: 100%;
+            width: 150px;
+            height: auto;
             border-radius: 10px;
-            margin-bottom: 15px;
+            margin-right: 20px;
+        }
+        .art-piece div {
+            overflow: hidden;
+        }
+        .art-piece p {
+            margin: 5px 0;
+            font-size: 1em;
+            line-height: 1.6;
         }
         footer {
             background-color: #333;
@@ -160,16 +120,6 @@
         }
     </style>
     <script>
-        function toggleGallery(view) {
-            const container = document.querySelector('.toggle-content');
-            if (view === 'sculptures') {
-                container.classList.remove('show-paintings');
-                container.classList.add('show-sculptures');
-            } else if (view === 'paintings') {
-                container.classList.remove('show-sculptures');
-                container.classList.add('show-paintings');
-            }
-        }
         function toggleTab(tabId) {
             const tabs = document.querySelectorAll('.container');
             const navButtons = document.querySelectorAll('.nav-tabs button');
@@ -187,52 +137,186 @@
 <body>
     <header>
         <h1>My Art Portfolio</h1>
-        <p>Welcome to my collection of sculptures and paintings</p>
+        <p>Welcome to my collection of artworks</p>
     </header>
 
     <nav class="nav-tabs">
+        <button onclick="toggleTab('about me')"><i class="fas fa-user"></i> About me</button>
         <button onclick="toggleTab('gallery')"><i class="fas fa-paint-brush"></i> Gallery</button>
-        <button onclick="toggleTab('cv')"><i class="fas fa-user"></i> CV</button>
+        <button onclick="toggleTab('cv')"><i class="fas fa-address-card"></i> CV</button>
         <button onclick="toggleTab('contact')"><i class="fas fa-envelope"></i> Contact</button>
     </nav>
 
-    <div id="gallery" class="container active">
-        <div class="toggle-options">
-            <button onclick="toggleGallery('sculptures')">View Sculptures</button>
-            <button onclick="toggleGallery('paintings')">View Paintings</button>
-        </div>
-        <div class="toggle-container">
-            <div class="toggle-content show-sculptures">
-                <section class="art-section sculptures">
-                    <h2>Sculptures</h2>
-                    <!-- Sculptures Section -->
-                    <div class="art-piece">
-                        <img src="sculpture1.jpg" alt="Sculpture 1">
-                        <h3>Title of Sculpture 1</h3>
-                        <p>Description of the artwork, the concept behind it, and materials used.</p>
-                    </div>
-                    <div class="art-piece">
-                        <img src="sculpture2.jpg" alt="Sculpture 2">
-                        <h3>Title of Sculpture 2</h3>
-                        <p>Description of the artwork, the concept behind it, and materials used.</p>
-                    </div>
-                </section>
-                <section class="art-section paintings">
-                    <h2>Paintings</h2>
-                    <!-- Paintings Section -->
-                    <div class="art-piece">
-                        <img src="painting1.jpg" alt="Painting 1">
-                        <h3>Title of Painting 1</h3>
-                        <p>Description of the artwork, the concept behind it, and materials used.</p>
-                    </div>
-                    <div class="art-piece">
-                        <img src="painting2.jpg" alt="Painting 2">
-                        <h3>Title of Painting 2</h3>
-                        <p>Description of the artwork, the concept behind it, and materials used.</p>
-                    </div>
-                </section>
+    <div id="about me" class="container active">
+        <h2>Curriculum Vitae</h2>
+        <p>Here you can include information about your education, exhibitions, awards, and other relevant experience.</p>
+    </div>
+
+    <div id="gallery" class="container">
+        <section class="art-section">
+            <h2>Projects</h2>
+
+            <!-- Projects Section -->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 1">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 1</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
             </div>
-        </div>
+
+
+
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 2">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 2</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+
+<!--          #****************************************************************************************-->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 3">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 3</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+<!--          #****************************************************************************************-->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 4">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 4</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+<!--          #****************************************************************************************-->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 5">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 5</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+<!--          #****************************************************************************************-->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 6">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 6</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+<!--          #****************************************************************************************-->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 7">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 7</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+<!--          #****************************************************************************************-->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 8">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 8</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+
+<!--          #****************************************************************************************-->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 9">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 9</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+
+<!--          #****************************************************************************************-->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 10">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 10</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+
+<!--          #****************************************************************************************-->
+
+            <div class="art-piece">
+<!--                <a href="project1.html">-->
+                    <img src="img/sc1.png" alt="Sculpture 11">
+                </a>
+                <div>
+                    <a href="project1.html">
+                        <h3 class="project-title">Sculpture 11</h3>
+                    </a>
+                    <p>Description of the artwork, the concept behind it, and materials used.</p>
+                </div>
+            </div>
+
+
+        </section>
     </div>
 
     <div id="cv" class="container">
@@ -248,9 +332,9 @@
     <footer>
         <p>&copy; 2024 My Art Portfolio. All Rights Reserved.</p>
         <div>
-            <a href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/mohadese.saber.75/profilecard/?igsh=YW0waXZpZzhwbGE1" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/mohadese-saber-64357b204?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://scholar.google.com/citations?user=covghQcAAAAJ&hl=en&oi=ao" target="_blank"><i class="fab fa-google"></i></a>
         </div>
     </footer>
 </body>
