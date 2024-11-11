@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title of Sculpture 1</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Dark Theme Background */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #f0f0f0;
+            background: linear-gradient(135deg, #1e1e2f, #2c2c3e);
+            background-size: cover;
+            background-attachment: fixed;
+            transition: all 0.3s ease;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(to right, #333344, #444466);
+            color: #eaeaea;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+            border-bottom-left-radius: 50% 30px;
+            border-bottom-right-radius: 50% 30px;
+        }
+        header h1 {
+            font-size: 3em;
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        header p {
+            font-size: 1.3em;
+            margin: 10px 0;
+            opacity: 0.85;
+        }
+
+        /* Container Styling */
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(40, 40, 55, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            position: relative;
+            animation: fadeIn 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .container h2 {
+            font-size: 2.5em;
+            color: #f3bb05;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 4px rgba(255, 102, 102, 0.3);
+        }
+        .container p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 30px;
+            color: #eaeaea;
+        }
+
+        /* Image Gallery Styling */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two images per row */
+            gap: 20px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.1); /* Magnify on hover */
+        }
+
+        /* Button Styling */
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            padding: 15px 30px;
+            background-color: #444466;
+            color: #f3bb05;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin: 20px 0;
+        }
+        .button:hover {
+            background-color: #ff6666;
+            transform: translateY(-3px);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #333344;
+            color: #bdb8d7;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.4);
+            border-top-left-radius: 50% 20px;
+            border-top-right-radius: 50% 20px;
+        }
+        footer a {
+            color: #f3bb05;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #ffcc00;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nejin</h1>
+        <p>Discover the story behind the artwork</p>
+    </header>
+
+    <div class="container">
+        <h2>Description</h2>
+        <p>Description of the artwork, the concept behind it, and materials used. This sculpture was crafted with precision and creativity, capturing the essence of its intended theme. The texture, colors, and form are meticulously chosen to represent an emotional journey that resonates with viewers on multiple levels.</p>
+        <p>Additional details about the project, such as inspiration, process, and artist's statement. The artist was inspired by the interplay of natural elements and the human experience, exploring the boundaries of form and emotion through abstract representation. This piece aims to evoke contemplation and curiosity, inviting the audience to create their own interpretations.</p>
+
+        <!-- Centered Image Gallery with Two Images per Row -->
+        <div class="image-gallery">
+            <img src="nejin/1nei.jpg" alt="Sculpture 1">
+            <img src="nejin/2nei.jpg" alt="Sculpture 1">
+            <img src="nejin/3nei.jpg" alt="Sculpture 1">
+            <img src="nejin/4nei.jpg" alt="Sculpture 1">
+            <img src="nejin/5nei.jpg" alt="Sculpture 1">
+            <img src="nejin/6nei.jpg" alt="Sculpture 1">
+            <img src="nejin/7nei.jpg" alt="Sculpture 1">
+            <img src="nejin/8nei.jpg" alt="Sculpture 1">
+            <img src="nejin/9nei.jpg" alt="Sculpture 1">
+            <img src="nejin/10nei.jpg" alt="Sculpture 1">
+            <img src="nejin/11nei.jpg" alt="Sculpture 1">
+            <img src="nejin/12nei.jpg" alt="Sculpture 1">
+
+        </div>
+
+        <!-- Back to Top Button -->
+        <a class="button" href="#top"><i class="fas fa-arrow-up"></i> Back to Top</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 My Art Portfolio. All Rights Reserved.</p>
+        <div>
+            <a href="https://www.instagram.com/mohadese.saber.75/profilecard/?igsh=YW0waXZpZzhwbGE1" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/mohadese-saber-64357b204?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://scholar.google.com/citations?user=covghQcAAAAJ&hl=en&oi=ao" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+            <a href="mailto:your.email@gmail.com" target="_blank"><i class="fas fa-envelope"></i> </a>
+
+        </div>
+    </footer>
+</body>
+</html>
