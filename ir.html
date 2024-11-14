@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map of Iran</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+        .leaflet-tooltip {
+            background-color: transparent;
+            border: none;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Interactive Map of Iran</h1>
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Load GeoJSON Data for Iran's Provinces -->
+<script>
+    // Initialize the map
+    var map = L.map('map', {
+        center: [32.4279, 53.6880], // Center on Iran
+        zoom: 1,
+        zoomControl: true, // Enable zoom controls
+        attributionControl: false // Hide attribution for a cleaner look
+    });
+
+    // Load GeoJSON data for Iran's provinces (path set to 'img/ir.json')
+    fetch('img/districts.json')
+        .then(response => response.json())
+        .then(data => {
+            // Add the GeoJSON layer to the map and fit the map bounds to the GeoJSON
+            var iranLayer = L.geoJSON(data, {
+                style: function (feature) {
+                    return {
+                        color: "#000",
+                        weight: 1,
+                        fillColor: "#cccccc",
+                        fillOpacity: 0.6
+                    };
+                },
+                onEachFeature: function (feature, layer) {
+                    // Bind a popup with the province's name
+                    // layer.bindPopup(feature.properties.name);
+
+                    // Add a tooltip with the province's name (shown on the map by default)
+                    // layer.bindTooltip(feature.properties.name, {
+                    //     permanent: true, // Always show the label
+                    //     direction: "center",
+                    //     className: "province-label"
+                    // });
+
+                    // Click event to open a specific page for each province
+                    layer.on('click', function () {
+                        window.open(feature.properties.name + '.html', '_blank');
+                    });
+
+                    // Hover effect
+                    layer.on('mouseover', function () {
+                        this.setStyle({
+                            fillColor: '#ffcc00'
+                        });
+                    });
+                    layer.on('mouseout', function () {
+                        this.setStyle({
+                            fillColor: '#cccccc'
+                        });
+                    });
+                }
+            }).addTo(map);
+
+            // Fit the map view to the GeoJSON layer (Iran's boundaries only)
+            map.fitBounds(iranLayer.getBounds());
+        })
+        .catch(error => console.log('Error loading GeoJSON data:', error));
+</script>
+
+</body>
+</html>
