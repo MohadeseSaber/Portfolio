@@ -9,6 +9,7 @@
         #map {
             width: 100%;
             height: 600px;
+            background-color: #989090; /* Set your desired background color here */
         }
         .leaflet-tooltip {
             background-color: transparent;
@@ -30,12 +31,12 @@
     // Initialize the map
     var map = L.map('map', {
         center: [32.4279, 53.6880], // Center on Iran
-        zoom: 1,
+        zoom: 6, // Adjust zoom level as needed
         zoomControl: true, // Enable zoom controls
         attributionControl: false // Hide attribution for a cleaner look
     });
 
-    // Load GeoJSON data for Iran's provinces (path set to 'img/ir.json')
+    // Load GeoJSON data for Iran's provinces (path set to 'img/districts.json')
     fetch('img/districts.json')
         .then(response => response.json())
         .then(data => {
@@ -50,16 +51,6 @@
                     };
                 },
                 onEachFeature: function (feature, layer) {
-                    // Bind a popup with the province's name
-                    // layer.bindPopup(feature.properties.name);
-
-                    // Add a tooltip with the province's name (shown on the map by default)
-                    // layer.bindTooltip(feature.properties.name, {
-                    //     permanent: true, // Always show the label
-                    //     direction: "center",
-                    //     className: "province-label"
-                    // });
-
                     // Click event to open a specific page for each province
                     layer.on('click', function () {
                         window.open(feature.properties.name + '.html', '_blank');
