@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +6,15 @@
     <title>Interactive Map of Iran</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-    #map {
-        width: 80%;
-        height: 600px;
-        background-color: #262637; /* Set your desired background color here */
-        margin: 0 auto; /* Centers the map horizontally */
-        border-radius: 20px; /* Optional: Rounded corners for a softer look */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7); /* Optional: Adds a subtle shadow */
-    }
+        /* Map and container styling */
+        #map {
+            width: 80%;
+            height: 600px;
+            background-color: #262637;
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
 
         .leaflet-tooltip {
             background-color: transparent;
@@ -23,35 +23,45 @@
             color: #333;
         }
 
-                /* Fancy Heading Styling */
-        .fancy-heading {
-            font-size: 3em;
-            font-weight: 700;
-            text-align: center;
-            text-transform: uppercase;
-            color: #ff6666;
-            background: linear-gradient(135deg, #ff6666, #ffcc00);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            position: relative;
-            margin: 0.5em 0;
-            letter-spacing: 2px;
-            transition: transform 0.3s ease;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            animation: glow 2s infinite alternate;
+        /* Image preview styling */
+        #province-image {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: none; /* Hidden by default */
         }
 
-        .fancy-heading:hover {
-            transform: scale(1.05);
-            text-shadow: 4px 4px 15px rgba(255, 204, 0, 0.7);
+        /* Description section styling */
+        #description {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #333344;
+            color: #f0f0f0;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .fancy-heading {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            color: #ffcc00;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-<!--<h2 class="fancy-heading">Collections</h2>-->
+<!--<h2 class="fancy-heading">Interactive Map of Iran</h2>-->
 <div id="map"></div>
+<img id="province-image" src="" alt="Province Preview" />
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -65,11 +75,14 @@
         attributionControl: true // Hide attribution for a cleaner look
     });
 
-    // Load GeoJSON data for Iran's provinces (path set to 'img/districts.json')
+    // Get the image element to update on hover
+    var provinceImage = document.getElementById('province-image');
+
+    // Load GeoJSON data for Iran's provinces
     fetch('img/districts.json')
         .then(response => response.json())
         .then(data => {
-            // Add the GeoJSON layer to the map without adjusting map bounds
+            // Add the GeoJSON layer to the map
             var iranLayer = L.geoJSON(data, {
                 style: function (feature) {
                     return {
@@ -80,19 +93,19 @@
                     };
                 },
                 onEachFeature: function (feature, layer) {
-                    // Add a tooltip with the province name
-                    // layer.bindTooltip(feature.properties.name, {
-                    //     permanent: true, // Always visible
-                    //     direction: "center", // Center the tooltip
-                    //     className: "leaflet-tooltip" // Custom class for styling
-                    // });
-
-                    // Click event to open a specific page for each province
-                    layer.on('click', function () {
-                        window.open(feature.properties.name + '.html', '_blank');
+                    // Hover effect to show image
+                    layer.on('mouseover', function () {
+                        var provinceId = feature.properties.name; // Get the unique id of the province
+                        provinceImage.src = 'grafiiti-p/' + provinceId + '.jpg'; // Set the image source based on province id
+                        provinceImage.style.display = 'block'; // Show the image
                     });
 
-                    // Hover effect
+                    // Hide the image when the cursor leaves the province
+                    layer.on('mouseout', function () {
+                        provinceImage.style.display = 'none'; // Hide the image
+                    });
+
+                    // Hover color effect
                     layer.on('mouseover', function () {
                         this.setStyle({
                             fillColor: '#ffcc00'
@@ -100,7 +113,7 @@
                     });
                     layer.on('mouseout', function () {
                         this.setStyle({
-                            fillColor: '#c19d9d' // Reset to original fill color
+                            fillColor: '#fbfbfb' // Reset to original fill color
                         });
                     });
                 }
